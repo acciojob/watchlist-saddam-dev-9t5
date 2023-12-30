@@ -18,12 +18,12 @@ public class MovieController {
     @PostMapping("/add-movie")
     public ResponseEntity<String> addMovie(@RequestBody Movie movie) {
         String response = movieService.addMovie(movie);
-        return new ResponseEntity<>("Movie added successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
     @PostMapping("/add-director")
     public ResponseEntity<String> addDirector(@RequestBody Director director) {
         String response = movieService.addDirector(director);
-        return new ResponseEntity<>("Director added successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @PutMapping("/add-movie-director-pair")
@@ -33,29 +33,25 @@ public class MovieController {
     }
     @GetMapping("/get-movie-by-name/{name}")
     public ResponseEntity<Movie> getMovieByName(@PathVariable String name) {
-        Movie movie = new Movie();
-        movie = movieService.getMovieByName(name);
+        Movie movie = movieService.getMovieByName(name);
         return new ResponseEntity<>(movie, HttpStatus.CREATED);
     }
 
     @GetMapping("get-director-by-name/{name}")
     public ResponseEntity<Director> getDirectorByName(@PathVariable String name) {
-        Director director = new Director();
-        director = movieService.getDirectorByName(name);
+        Director director = movieService.getDirectorByName(name);
         return new ResponseEntity<>(director, HttpStatus.CREATED);
     }
 
     @GetMapping("/get-movies-by-director-name/{director}")
     public ResponseEntity<List<String>> getMoviesByDirectorName(@PathVariable String director) {
-        List<String> movies = null;
-        movies = movieService.getMoviesByDirectorName(director);
+        List<String> movies = movieService.getMoviesByDirectorName(director);
         return new ResponseEntity<>(movies, HttpStatus.CREATED);
     }
 
     @GetMapping("/get-all-movies")
         public ResponseEntity<List<String>> findAllMovies() {
-        List<String> allMovies = null;
-        allMovies = movieService.getAllMovies();
+        List<String> allMovies = movieService.getAllMovies();
         return new ResponseEntity<>(allMovies, HttpStatus.CREATED);
     }
 

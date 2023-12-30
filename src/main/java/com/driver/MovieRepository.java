@@ -21,6 +21,7 @@ public class MovieRepository {
 
     public String addDirector(Director director) {
         String name = director.getName();
+        director.setNumberOfMovies(0);
         this.directorList.put(name, director);
         return "Director added successfully";
     }

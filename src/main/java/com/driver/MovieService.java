@@ -14,23 +14,12 @@ public class MovieService {
         return movieRepository.addMovie(movie);
     }
 
-    public Map<String, Movie> getAllMovie() {
-        return movieRepository.getAllMovie();
-    }
-
     public String addDirector(Director director) {
         return movieRepository.addDirector(director);
     }
 
-    public Map<String, Director> getAllDirector() {
-        return movieRepository.getAllDirector();
-    }
     public String addMovieDirectorPair(String movie, String director) {
         return movieRepository.addMovieDirectorPair(movie, director);
-    }
-
-    public Map<String, List<String>> getAllMovieDirectorPair() {
-        return movieRepository.getAllMovieDirectorPair();
     }
 
     public Movie getMovieByName(String name) {

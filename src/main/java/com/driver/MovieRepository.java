@@ -11,26 +11,18 @@ import java.util.List;
 public class MovieRepository {
     Map<String, Movie> movieList = new HashMap<>();
     Map<String, Director> directorList = new HashMap<>();
-
     Map<String, List<String>> movieDirectorPairList = new HashMap<>();
+
     public String addMovie(Movie movie) {
         String name = movie.getName();
         movieList.put(name, movie);
         return "Movie added successfully";
     }
 
-    public Map<String, Movie> getAllMovie() {
-        return this.movieList;
-    }
-
     public String addDirector(Director director) {
         String name = director.getName();
         directorList.put(name, director);
         return "Director added successfully";
-    }
-
-    public Map<String, Director> getAllDirector() {
-        return this.directorList;
     }
 
     public String addMovieDirectorPair(String movie, String director) {
@@ -56,10 +48,6 @@ public class MovieRepository {
         return "Movie director pair added successfully";
     }
 
-    public Map<String, List<String>> getAllMovieDirectorPair() {
-        return this.movieDirectorPairList;
-    }
-
     public Movie getMovieByName(String name) {
         Movie movie = new Movie();
         if(movieList.containsKey(name)) {
@@ -77,15 +65,17 @@ public class MovieRepository {
     }
 
     public List<String> getMoviesByDirectorName(String director) {
-        List<String> movies = null;
-        movies = movieDirectorPairList.get(director);
+        List<String> movies = new ArrayList<>();
+        if(movieDirectorPairList.containsKey(director)) {
+            movies = movieDirectorPairList.get(director);
+        }
         return movies;
     }
 
     public List<String> getAllMovies() {
-        List<String> allMovies = null;
-        for (String movie: movieList.keySet()) {
-            allMovies.add(movie);
+        List<String> allMovies = new ArrayList<>();
+        if(!movieList.isEmpty()) {
+            allMovies.addAll(movieList.keySet());
         }
         return allMovies;
     }
